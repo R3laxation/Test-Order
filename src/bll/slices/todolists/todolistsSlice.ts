@@ -1,9 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-
-export const slice = createSlice({
+const slice = createSlice({
     name: 'todolists',
-    initialState: [] as TodoListsType[],
+    initialState: [] as TodolistType[],
     reducers: {
         changeTodolistFilter(state, action: PayloadAction<{ id: string, filter: FilterValuesType }>) {
             const index = state.findIndex(tl => tl.id === action.payload.id)
@@ -16,9 +15,9 @@ export const slice = createSlice({
     }
 });
 
-export const {changeTodolistFilter, changeTodolistEntityStatus} = slice.actions
 
-export type TodoListsType = {
+
+export type TodolistType = {
     id: string
     title: string
     addedDate: string
@@ -30,3 +29,7 @@ export type TodoListsType = {
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
+
+export const {changeTodolistFilter, changeTodolistEntityStatus} = slice.actions
+
+export default slice.reducer
